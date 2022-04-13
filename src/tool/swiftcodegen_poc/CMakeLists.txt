@@ -10,12 +10,9 @@ target_sources(swiftcodegen PUBLIC
     main.cpp
     metadata_cache.cpp
     pch.cpp
-    types.cpp
-    "${PROJECT_BINARY_DIR}/strings.cpp")
+    types.cpp)
 target_include_directories(swiftcodegen PUBLIC ${XLANG_LIBRARY_PATH} ${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR})
 target_compile_definitions(swiftcodegen PUBLIC "SWIFTCODEGENWINRT_VERSION_STRING=\"${XLANG_BUILD_VERSION}\"")
-
-GENERATE_STRING_LITERAL_FILES("${PROJECT_SOURCE_DIR}/strings/*.h" "strings" "xlang::strings" swiftcodegen)
 
 if (WIN32)
     TARGET_CONFIG_MSVC_PCH(swiftcodegen pch.cpp pch.h)

@@ -168,7 +168,7 @@ inline void write_deprecation_message(
         bind<write_contract_macro>(ns, name), format_hex{ info.version });
 }
 
-// TONY: Unlike the compact representation I didn't count the precice number of characters.
+// NOTE: Unlike the compact representation I didn't count the precice number of characters.
 inline std::array<char, 256> type_iid_expanded(xlang::meta::reader::TypeDef const& type)
 {
     using namespace std::literals;

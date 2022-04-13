@@ -58,7 +58,7 @@ static void print_usage(basic_writer& w)
 WinRT Swift Code Generation Playground v%
 Forked from abi.exe which is Copyright (c) Microsoft Corporation. All rights reserved. MIT Licence.
 
-  swiftgen.exe [options...]
+  swiftcodegen.exe [options...]
 
 Options:
 
@@ -71,7 +71,7 @@ Where <spec> is one or more of:
   sdk[+]                                  Current version of Windows SDK [with extensions]
   10.0.12345.0[+]                         Specific version of Windows SDK [with extensions]
 )";
-    w.write(format, SWIFTGENWINRT_VERSION_STRING, bind_each(printOption, options));
+    w.write(format, SWIFTCODEGENWINRT_VERSION_STRING, bind_each(printOption, options));
 }
 
 int main(int const argc, char** argv)
@@ -252,7 +252,6 @@ int main(int const argc, char** argv)
                 else
                 {
                     auto types = mdCache.compile_namespaces({ foundation_namespace, collections_namespace });
-                    // write_abi_header(foundation_namespace, config, types);
                 }
             });
         }

@@ -117,7 +117,6 @@ static void write_swift_function_declaration(writer& w, T const& type, function_
         // auto constMod = is_const(param.signature) ? "const "sv : ""sv;
         if (param.signature.ByRef())
         {
-            // TODO: Needed?
             DebugBreak();
         }
         else
@@ -182,10 +181,6 @@ static void write_swift_interface_definition(writer& w, T const& type)
 )^-^");
 }
 
-static void write_delegate_definition(writer& w, delegate_type const& type, void (*func)(writer&, delegate_type const&))
-{
-}
-
 void delegate_type::write_swift_definition(writer& w) const
 {
 }
@@ -221,7 +216,6 @@ static void write_interface_definition(writer& w, interface_type const& type, vo
 
 void interface_type::write_swift_definition(writer& w) const
 {
-    // TODO: Better understand this construct. Why chain in this way?
     write_interface_definition(w, *this, &write_swift_interface_definition<interface_type>);
 }
 
@@ -316,7 +310,8 @@ void element_type::write_swift_abi_param(writer& w) const
     // For element types, param name == ABI name
     write_swift_abi_name(w);
 
-    // TONY: if m_cppName is HSTRING add ? How to handle this more elegantly?
+    // NOTE: if m_cppName is HSTRING add ?. Any real solution should handle this
+    // more elegantly for all applicable types.
     if (m_cppName == "HSTRING") {
         w.write("?");
     }
